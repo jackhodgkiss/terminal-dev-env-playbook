@@ -1,0 +1,9 @@
+---
+- name: Terminal Developer Environment Playbook
+  hosts: all
+  vars_files:
+    - "vars/main.yml"
+  tasks:
+    - name: Greetings
+      ansible.builtin.debug:
+        var: greeting
