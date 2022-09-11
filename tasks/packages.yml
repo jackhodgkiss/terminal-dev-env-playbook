@@ -1,0 +1,19 @@
+---
+- name: Ensure package cache is up-to-date
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Ensure system packages are up-to-date # noqa package-latest
+  ansible.builtin.apt:
+    package: "*"
+    state: latest
+  become: true
+
+- name: Ensure specified packages are present # noqa package-latest
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ system_packages[ansible_os_family | lower] }}"
+  become: true

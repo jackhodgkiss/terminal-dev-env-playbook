@@ -1,2 +1,11 @@
 ---
-greeting: "Hello, World!"
+system_packages:
+  debian:
+    - bash-completion
+    - fzf
+    - git
+    - nmap
+    - neovim
+    - python3-virtualenv
+    - tcpdump
+    - tmux
