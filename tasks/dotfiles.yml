@@ -1,0 +1,20 @@
+---
+- name: Ensure necessary folders are present
+  ansible.builtin.file:
+    path: "{{ item.value.path | dirname }}"
+    state: directory
+    mode: "0700"
+  loop: "{{ dotfiles | dict2items }}"
+
+- name: Ensure dotfiles are present
+  ansible.builtin.copy:
+    dest: "{{ item.value.path }}"
+    content: "{{ item.value.content }}"
+    mode: "0644"
+  loop: "{{ dotfiles | dict2items }}"
+
+- name: Ensure git-prompt.sh is present
+  ansible.builtin.get_url:
+    url: "{{ git_prompt_url }}"
+    dest: "~/.git-prompt.sh"
+    mode: "0644"

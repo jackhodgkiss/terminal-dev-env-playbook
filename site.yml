@@ -7,3 +7,8 @@
   tasks:
     - name: Ensure system is up-to-date and required packages are present
       ansible.builtin.import_tasks: "tasks/packages.yml"
+      tags: packages
+
+    - name: Ensure dotfiles are present
+      ansible.builtin.import_tasks: "tasks/dotfiles.yml"
+      tags: dotfiles
